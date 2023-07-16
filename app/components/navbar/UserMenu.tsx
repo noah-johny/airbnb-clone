@@ -16,12 +16,12 @@ function UserMenu() {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-2">
-        {/* 'Airbnb your home' button */}
+        {/* 'Airbnb your home' (Button) */}
         <div className="hidden md:flex px-4 py-4 rounded-full text-sm font-semibold hover:bg-neutral-100 cursor-pointer transition">
           Airbnb your home
         </div>
 
-        {/* User Menu */}
+        {/* USER MENU */}
         <div
           onClick={toggleOpen}
           className="flex flex-row gap-3 p-2 items-center border-[1px] border-neutral-200 rounded-full cursor-pointer hover:shadow-md transition"
@@ -33,7 +33,7 @@ function UserMenu() {
         </div>
       </div>
 
-      {/* User Menu (Dropdown) */}
+      {/* USER MENU (Dropdown) */}
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm"></div>
       )}
