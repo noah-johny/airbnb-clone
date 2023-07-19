@@ -2,30 +2,31 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import MyButton from "../buttons/MyButton";
 
-interface ModalProps {
+interface MyModalProps {
   title?: String;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: String;
-  secondaryLabel?: String;
+  primaryActionLabel: String;
+  secondaryActionLabel?: String;
   isOpen?: boolean;
   disabled?: boolean;
+  primaryAction: () => void;
   secondaryAction?: () => void;
-  onSubmit: () => void;
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const MyModal: React.FC<MyModalProps> = ({
   title,
   body,
   footer,
-  actionLabel,
-  secondaryLabel,
+  primaryActionLabel,
+  secondaryActionLabel,
   isOpen,
   disabled,
+  primaryAction,
   secondaryAction,
-  onSubmit,
   onClose,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
@@ -42,10 +43,10 @@ const Modal: React.FC<ModalProps> = ({
       }, 300);
   }, [disabled, onClose]);
 
-  const handleSubmit = useCallback(() => {
+  const handlePrimaryAction = useCallback(() => {
     if (disabled) return;
-    else onSubmit();
-  }, [disabled, onSubmit]);
+    else primaryAction();
+  }, [disabled, primaryAction]);
 
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) return;
@@ -82,7 +83,22 @@ const Modal: React.FC<ModalProps> = ({
 
               {/* FOOTER */}
               <div className="relative flex flex-col gap-2 p-6">
-                <div className="flex flex-row items-center gap-4 w-4"></div>
+                <div className="flex flex-row items-center gap-4 w-full">
+                  {/* SECONDARY ACTION BUTTON */}
+                  {secondaryActionLabel && secondaryAction && (
+                    <MyButton
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                    />
+                  )}
+
+                  {/* ACTION BUTTON */}
+                  <MyButton
+                    disabled={disabled}
+                    label={primaryActionLabel}
+                    onClick={handlePrimaryAction}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -92,4 +108,4 @@ const Modal: React.FC<ModalProps> = ({
   );
 };
 
-export default Modal;
+export default MyModal;

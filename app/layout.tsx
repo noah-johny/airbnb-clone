@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
-import Modal from "./components/modals/Modal";
+import MyModal from "./components/modals/MyModal";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -19,12 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <Modal
+        <MyModal
           title={"Modal Title"}
           isOpen
-          // actionLabel={""}
+          primaryActionLabel={"Submit"}
+          secondaryActionLabel={"Previous"}
           // onSubmit={() => {}}
-          // onClose={() => {}}
+          // onClose={onClose}
         />
         <Navbar />
         {children}
