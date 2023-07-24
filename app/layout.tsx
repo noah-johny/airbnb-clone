@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import MyModal from "./components/modals/MyModal";
+import ToasterProvider from "./providers/ToasterProvider";
+import RegisterModal from "./components/modals/RegisterModal";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -19,14 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <MyModal
-          title={"Modal Title"}
-          isOpen
-          primaryActionLabel={"Submit"}
-          secondaryActionLabel={"Previous"}
-          // onSubmit={() => {}}
-          // onClose={onClose}
-        />
+        <ToasterProvider />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
