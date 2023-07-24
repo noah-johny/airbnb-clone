@@ -22,6 +22,7 @@ const MyButton: React.FC<MyButtonProps> = ({
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`relative rounded-lg w-full transition hover:opacity-80 disabled:opacity-70 disabled:cursor-not-allowed ${
         small
           ? "py-1 text-sm font-normal border-[1px]"
