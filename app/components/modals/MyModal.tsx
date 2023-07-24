@@ -5,15 +5,15 @@ import { IoMdClose } from "react-icons/io";
 import MyButton from "../buttons/MyButton";
 
 interface MyModalProps {
-  title?: String;
+  title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  primaryActionLabel: String;
-  secondaryActionLabel?: String;
+  primaryActionLabel: string;
+  secondaryActionLabel?: string;
   isOpen?: boolean;
   disabled?: boolean;
-  primaryAction: () => void;
-  secondaryAction?: () => void;
+  onPrimaryAction: () => void;
+  onSecondaryAction?: () => void;
   onClose: () => void;
 }
 
@@ -25,8 +25,8 @@ const MyModal: React.FC<MyModalProps> = ({
   secondaryActionLabel,
   isOpen,
   disabled,
-  primaryAction,
-  secondaryAction,
+  onPrimaryAction,
+  onSecondaryAction,
   onClose,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
@@ -45,13 +45,15 @@ const MyModal: React.FC<MyModalProps> = ({
 
   const handlePrimaryAction = useCallback(() => {
     if (disabled) return;
-    else primaryAction();
-  }, [disabled, primaryAction]);
+    else {
+      onPrimaryAction();
+    }
+  }, [disabled, onPrimaryAction]);
 
   const handleSecondaryAction = useCallback(() => {
-    if (disabled || !secondaryAction) return;
-    else secondaryAction();
-  }, [disabled, secondaryAction]);
+    if (disabled || !onSecondaryAction) return;
+    else onSecondaryAction();
+  }, [disabled, onSecondaryAction]);
 
   if (!isOpen) return null;
 
@@ -60,9 +62,9 @@ const MyModal: React.FC<MyModalProps> = ({
       {/* BACKGROUND */}
       <div className="fixed flex inset-0 z-50 bg-neutral-800/70 justify-center items-center overflow-x-hidden overflow-y-auto scrollbar-none">
         {/* MODAL */}
-        <div className="relative h-full md:h-auto lg:h-auto w-full md:w-4/6 lg:w-3/6 xl:w-2/6 my-6 mx-auto rounded-lg shadow-lg border-none bg-white">
+        <div className="relative h-full md:h-auto lg:h-auto w-full md:w-4/6 lg:w-3/6 xl:w-2/6 my-6 mx-auto border-none">
           <div
-            className={`translate duration-300 h-full ${
+            className={`translate duration-300 h-full bg-white rounded-lg shadow-lg ${
               showModal ? "translate-y-0" : "translate-y-full"
             } ${showModal ? "opacity-100" : "opacity-0"}`}
           >
@@ -82,17 +84,21 @@ const MyModal: React.FC<MyModalProps> = ({
               <div className="relative flex-auto p-6">{body}</div>
 
               {/* FOOTER */}
-              <div className="relative flex flex-col gap-2 p-6">
+              <div className="relative flex-auto p-6">{footer}</div>
+
+              {/* ACTION BUTTONS */}
+              <div className="relative flex flex-col gap-2 p-6 pt-3">
                 <div className="flex flex-row items-center gap-4 w-full">
-                  {/* SECONDARY ACTION BUTTON */}
-                  {secondaryActionLabel && secondaryAction && (
+                  {/* Secondary Action Button */}
+                  {secondaryActionLabel && onSecondaryAction && (
                     <MyButton
+                      disabled={disabled}
                       label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
                     />
                   )}
 
-                  {/* ACTION BUTTON */}
+                  {/* Primary Action Button */}
                   <MyButton
                     disabled={disabled}
                     label={primaryActionLabel}
