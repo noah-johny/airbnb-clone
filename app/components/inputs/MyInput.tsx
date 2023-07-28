@@ -32,6 +32,8 @@ const MyInput: React.FC<MyInputProps> = ({
           className="absolute top-5 left-2 text-neutral-700"
         />
       )}
+
+      {/* INPUT */}
       <input
         id={id}
         disabled={disabled}
@@ -45,6 +47,7 @@ const MyInput: React.FC<MyInputProps> = ({
         }`}
       />
 
+      {/* INPUT FIELD LABEL */}
       <label
         className={`absolute top-5 z-10 origin-[0] text-md duration-150 transform -translate-y-3 ${
           price ? "left-9" : "left-4"

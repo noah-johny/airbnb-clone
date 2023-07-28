@@ -33,8 +33,13 @@ const MyButton: React.FC<MyButtonProps> = ({
           : "bg-rose-500 text-white border-rose-500"
       }`}
     >
+      {/* LEFT ICON */}
       {LeftIcon && <LeftIcon size={24} className="absolute left-4 top-3" />}
+
+      {/* BUTTON LABEL */}
       {label}
+
+      {/* RIGHT ICON */}
       {RightIcon && <RightIcon size={24} className="absolute right-4 top-3" />}
     </button>
   );

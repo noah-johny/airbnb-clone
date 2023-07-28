@@ -24,6 +24,7 @@ const RegisterModal = () => {
     defaultValues: { name: "", email: "", password: "" },
   });
 
+  // Submitting Form
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
@@ -64,7 +65,6 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
-
       <MyInput
         id="password"
         type="password"

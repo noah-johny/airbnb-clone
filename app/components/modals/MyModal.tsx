@@ -72,11 +72,11 @@ const MyModal: React.FC<MyModalProps> = ({
             <div className="relative flex flex-col h-full md:h-auto lg:h-auto w-full">
               {/* HEADER */}
               <div className="relative flex items-center justify-center rounded-t p-6 border-b-[1px]">
-                {/* Close (Button) */}
+                {/* CLOSE BUTTON */}
                 <button className="absolute left-9 p-1 border-0 hover:opacity-70 transition">
                   <IoMdClose size={18} onClick={handleClose} />
                 </button>
-                {/* Title */}
+                {/* TITLE */}
                 <div className="text-lg font-semibold">{title}</div>
               </div>
 
@@ -89,7 +89,7 @@ const MyModal: React.FC<MyModalProps> = ({
               {/* ACTION BUTTONS */}
               <div className="relative flex flex-col gap-2 p-6 pt-3">
                 <div className="flex flex-row items-center gap-4 w-full">
-                  {/* Secondary Action Button */}
+                  {/* SECONDARY BUTTON */}
                   {secondaryActionLabel && onSecondaryAction && (
                     <MyButton
                       disabled={disabled}
@@ -98,7 +98,7 @@ const MyModal: React.FC<MyModalProps> = ({
                     />
                   )}
 
-                  {/* Primary Action Button */}
+                  {/* PRIMARY BUTTON */}
                   <MyButton
                     disabled={disabled}
                     label={primaryActionLabel}
